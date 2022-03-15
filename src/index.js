@@ -23,14 +23,18 @@ function onCountryInput() {
     .then(countries => {
       refs.countryList.innerHTML = '';
       refs.countryInfo.innerHTML = '';
-      if (countries.length === 1) {
+      if (countries.length >= 2 && countries.length <= 10)  {
         refs.countryList.insertAdjacentHTML('beforeend', renderCountryList(countries));
-        refs.countryInfo.insertAdjacentHTML('beforeend', renderCountryInfo(countries));
+        // refs.countryInfo.insertAdjacentHTML('beforeend', renderCountryInfo(countries));
+      } else if (countries.length === 1) {
+        refs.list.insertAdjacentHTML('beforeend', renderCountryInfo(countries));
       } else if (countries.length >= 10) {
         alertTooManyMatches();
-      } else {
-        refs.countryList.insertAdjacentHTML('beforeend', renderCountryList(countries));
       }
+      // else {
+      //   refs.countryList.insertAdjacentHTML('beforeend', renderCountryList(countries));
+      // }
+
     })
     .catch(alertWrongName);
 }
